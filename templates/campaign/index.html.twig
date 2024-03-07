@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!-- campaign -->
+<div class="campaign-section mt-150 mb-150">
+    <div class="container">
+        <a href="{{ path('participation_pdf') }}" class="btn btn-success mt-3 float-end">Générer PDF de votre liste de participation</a>
+
+      <i> <b> <p>Do you want to <a href="/campaign/new">Create a Campaign</a>?</p><b></i>
+
+        <!-- campaign List -->
+<div class="row campagne-lists">
+    {% for campagne in campagnes %}
+    <div class="col-lg-4 col-md-6 text-center">
+        <div class="single-campagne-item">
+            <div class="campagne-image">
+                <img src="{{ asset('uploads/images/' ~ campagne.image) }}" alt="{{ campagne.nomcampagne }}">
+
+            </div>
+            <h3>{{ campagne.nomcampagne }}</h3>
+			<p> Id: {{campagne.id}}</p>
+            <p>Description: {{ campagne.descri }}</p>
+            <p>Date Debut: {{ campagne.datedeb|date('Y-m-d') }}</p>
+            <p>Date Fin: {{ campagne.datefin|date('Y-m-d') }}</p>
+            <p>Createur: {{ campagne.createur}}</p>
+
+            <!-- Add your adopt button or any other action button here -->
+			<a href="{{ path('app_campaign_evenement', {'id': campagne.id}) }}" class="info-btn">participer</a>
+
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+<!-- End campagne List -->
+    
+{% endblock %}
